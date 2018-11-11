@@ -1,0 +1,17 @@
+version: '3'
+services:
+  webserver:
+    build: ./
+    image: node-express-dev:1.0
+    container_name: ganachecli
+    tty: true
+    volumes:
+      - ./src:/src
+    ports:
+      - "8545:8545"
+    networks:
+      - ganachecliserver
+
+networks:
+  ganachecliserver:
+    external: true
