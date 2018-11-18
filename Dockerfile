@@ -17,9 +17,17 @@ RUN apk add --update \
     py-pip \
     build-base
 
+RUN git config --global url."https://".insteadOf git://
+
+RUN yarn cache clean
 RUN yarn install
 
-RUN yarn global add ganache-cli
+RUN npm update npm
+
+# RUN sudo yarn global add ganache-cli
+
+# RUN sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+RUN sudo npm install -g --unsafe-perm ganache-cli
 RUN mkdir -p /var/ganache
  
 ENV DOCKER true
